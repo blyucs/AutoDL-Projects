@@ -16,7 +16,7 @@ from xautodl.procedures import get_machine_info
 from xautodl.datasets import get_datasets
 from xautodl.log_utils import Logger, AverageMeter, time_string, convert_secs2time
 from xautodl.models import CellStructure, CellArchitectures, get_search_spaces
-from xautodl.functions import evaluate_for_seed
+from functions import evaluate_for_seed
 
 
 def evaluate_all_datasets(
@@ -570,11 +570,11 @@ if __name__ == "__main__":
         description="NAS-Bench-201",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument("--mode", type=str, required=True, help="The script mode.")
+    parser.add_argument("--mode", type=str, default='new', help="The script mode.")
     parser.add_argument(
-        "--save_dir", type=str, help="Folder to save checkpoints and log."
+        "--save_dir", type=str, default="output/NAS-BENCH-201-4/", help="Folder to save checkpoints and log."
     )
-    parser.add_argument("--max_node", type=int, help="The maximum node in a cell.")
+    parser.add_argument("--max_node", type=int, default=4, help="The maximum node in a cell.")
     # use for train the model
     parser.add_argument(
         "--workers",
@@ -583,7 +583,7 @@ if __name__ == "__main__":
         help="number of data loading workers (default: 2)",
     )
     parser.add_argument(
-        "--srange", type=int, nargs="+", help="The range of models to be evaluated"
+        "--srange", type=int, nargs="+", default=[0, 1], help="The range of models to be evaluated"
     )
     parser.add_argument(
         "--arch_index",
@@ -591,12 +591,12 @@ if __name__ == "__main__":
         default=-1,
         help="The architecture index to be evaluated (cover mode).",
     )
-    parser.add_argument("--datasets", type=str, nargs="+", help="The applied datasets.")
+    parser.add_argument("--datasets", type=str, default=['cifar10'], nargs="+", help="The applied datasets.")
     parser.add_argument(
-        "--xpaths", type=str, nargs="+", help="The root path for this dataset."
+        "--xpaths", type=str, nargs="+", default=['torch_home/cifar.python'], help="The root path for this dataset."
     )
     parser.add_argument(
-        "--splits", type=int, nargs="+", help="The root path for this dataset."
+        "--splits", type=int, nargs="+", default=[1], help="The root path for this dataset."
     )
     parser.add_argument(
         "--use_less",
@@ -606,11 +606,11 @@ if __name__ == "__main__":
         help="Using the less-training-epoch config.",
     )
     parser.add_argument(
-        "--seeds", type=int, nargs="+", help="The range of models to be evaluated"
+        "--seeds", type=int, nargs="+", default=[777], help="The range of models to be evaluated"
     )
-    parser.add_argument("--channel", type=int, help="The number of channels.")
+    parser.add_argument("--channel", type=int, default=16, help="The number of channels.")
     parser.add_argument(
-        "--num_cells", type=int, help="The number of cells in one stage."
+        "--num_cells", type=int, default=5, help="The number of cells in one stage."
     )
     args = parser.parse_args()
 
