@@ -2,11 +2,11 @@
 # Copyright (c) Xuanyi Dong [GitHub D-X-Y], 2019.08 #
 #####################################################
 import time, torch
-from xautodl.procedures import prepare_seed, get_optim_scheduler
-from xautodl.utils import get_model_infos, obtain_accuracy
-from xautodl.config_utils import dict2config
-from xautodl.log_utils import AverageMeter, time_string, convert_secs2time
-from xautodl.models import get_cell_based_tiny_net
+from procedures import prepare_seed, get_optim_scheduler
+from utils import get_model_infos, obtain_accuracy
+from config_utils import dict2config
+from log_utils import AverageMeter, time_string, convert_secs2time
+from models import get_cell_based_tiny_net
 
 
 __all__ = ["evaluate_for_seed", "pure_evaluate"]
